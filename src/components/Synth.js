@@ -5,7 +5,7 @@ import KeyBoard from './KeyBoard'
 import Tone from 'tone'
 
 class Synth extends Component {
-  state = { voice: 'mono', noteLength: '', note: '' }
+  state = { type: '', voice: 'mono', noteLength: '', note: '' }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
   wah = new Tone.AutoWah()
@@ -27,6 +27,10 @@ class Synth extends Component {
 
   handleChangeVoice = voice => {
     this.setState({ voice: voice })
+  }
+
+  handleChangeType = type => {
+    this.setState({ type: type })
   }
 
   handleSingleNote = () => {
@@ -75,6 +79,7 @@ class Synth extends Component {
           sendData={this.getNoteLength}
           sequencer={this.handleSequence}
           changeVoice={this.handleChangeVoice}
+          changeType={this.handleChangeType}
           synthVoiceType={this.state.voice}
         />
         <KeyBoard sendNote={this.getNote} />
