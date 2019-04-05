@@ -30,7 +30,6 @@ class Synth extends Component {
   }
 
   handleChangeType = type => {
-    console.log(this.state.type)
     this.setState({ type: type })
   }
 

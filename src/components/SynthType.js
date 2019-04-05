@@ -8,11 +8,18 @@ class SynthType extends Component {
   }
 
   handleChangeType = event => {
-    this.setState({ type: 'Duo' }, this.handleUpdate)
+    this.setState({ type: event.target.value }, this.handleUpdate)
   }
 
   render() {
-    return <div onClick={this.handleChangeType}>Type</div>
+    return (
+      <select value={this.state.type} onChange={this.handleChangeType}>
+        <option value="Mono">MonoSynth</option>
+        <option value="Duo">DuoSynth</option>
+        <option value="AM">AMSynth</option>
+        <option value="FM">FMSynth</option>
+      </select>
+    )
   }
 }
 
