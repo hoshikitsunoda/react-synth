@@ -76,6 +76,10 @@ class KeyBoard extends Component {
     window.addEventListener('keypress', this.handleNoteChange)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleNoteChange)
+  }
+
   render() {
     const pianoKeys = this.keys.map(key => {
       return (
