@@ -79,7 +79,7 @@ class Synth extends Component {
           sendData={this.getNoteLength}
           sequencer={this.handleSequence}
           changeVoice={this.handleChangeVoice}
-          changeType={this.handleChangeType}
+          changeSynthType={this.handleChangeType}
           synthVoiceType={this.state.voice}
         />
         <KeyBoard sendNote={this.getNote} />
