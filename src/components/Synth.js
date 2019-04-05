@@ -5,14 +5,14 @@ import KeyBoard from './KeyBoard'
 import Tone from 'tone'
 
 class Synth extends Component {
-  state = { type: '', voice: 'mono', noteLength: '', note: '' }
+  state = { type: 'Mono', voice: 'mono', noteLength: '', note: '' }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
   wah = new Tone.AutoWah()
   volume = new Tone.Volume(-30)
 
   synthArp = new Tone.AMSynth().chain(this.wah, this.delay, Tone.Master)
-  synthMono = new Tone.DuoSynth().chain(this.volume, Tone.Master)
+  synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
   synthPoly = new Tone.PolySynth().chain(this.volume, Tone.Master)
 
   note = this.state.note
@@ -31,6 +31,25 @@ class Synth extends Component {
 
   handleChangeType = type => {
     this.setState({ type: type })
+  }
+
+  handleSynthChange = () => {
+    switch (this.state.type) {
+      case 'Mono':
+        this.synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      case 'Duo':
+        this.synthMono = new Tone.DuoSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      case 'AM':
+        this.synthMono = new Tone.AMSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      default:
+        break
+    }
   }
 
   handleSingleNote = () => {
@@ -73,6 +92,7 @@ class Synth extends Component {
   }
 
   render() {
+    this.handleSynthChange()
     return (
       <div>
         <ControlPanel
