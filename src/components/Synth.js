@@ -30,6 +30,7 @@ class Synth extends Component {
   }
 
   handleChangeType = type => {
+    console.log(this.state.type)
     this.setState({ type: type })
   }
 
@@ -82,7 +83,7 @@ class Synth extends Component {
           changeSynthType={this.handleChangeType}
           synthVoiceType={this.state.voice}
         />
-        <KeyBoard sendNote={this.getNote} />
+        <KeyBoard onClick={this.handleChangeType} sendNote={this.getNote} />
       </div>
     )
   }
