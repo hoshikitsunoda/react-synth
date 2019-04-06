@@ -5,14 +5,14 @@ import KeyBoard from './KeyBoard'
 import Tone from 'tone'
 
 class Synth extends Component {
-  state = { voice: 'mono', noteLength: '', note: '' }
+  state = { type: 'Mono', voice: 'mono', noteLength: '', note: '' }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
   wah = new Tone.AutoWah()
   volume = new Tone.Volume(-30)
 
   synthArp = new Tone.AMSynth().chain(this.wah, this.delay, Tone.Master)
-  synthMono = new Tone.DuoSynth().chain(this.volume, Tone.Master)
+  synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
   synthPoly = new Tone.PolySynth().chain(this.volume, Tone.Master)
 
   note = this.state.note
@@ -29,16 +29,51 @@ class Synth extends Component {
     this.setState({ voice: voice })
   }
 
+  handleChangeType = type => {
+    this.setState({ type: type }, this.handleSynthChange)
+  }
+
+  handleSynthChange = () => {
+    switch (this.state.type) {
+      case 'Mono':
+        this.synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      case 'Duo':
+        this.synthMono = new Tone.DuoSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      case 'AM':
+        this.synthMono = new Tone.AMSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      case 'FM':
+        this.synthMono = new Tone.FMSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
+      default:
+        break
+    }
+  }
+
   handleSingleNote = () => {
     this.state.voice === 'mono'
-      ? this.synthMono.triggerAttack(this.state.note)
-      : this.synthPoly.triggerAttack(this.state.note)
+      ? Tone.context.resume().then(() => {
+          this.synthMono.triggerAttack(this.state.note)
+        })
+      : Tone.context.resume().then(() => {
+          this.synthPoly.triggerAttack(this.state.note)
+        })
   }
 
   handleSingleNoteRelease = () => {
     this.state.voice === 'mono'
-      ? this.synthMono.triggerRelease()
-      : this.synthPoly.releaseAll()
+      ? Tone.context.resume().then(() => {
+          this.synthMono.triggerRelease()
+        })
+      : Tone.context.resume().then(() => {
+          this.synthPoly.releaseAll()
+        })
   }
 
   handleSequence = () => {
@@ -75,8 +110,11 @@ class Synth extends Component {
           sendData={this.getNoteLength}
           sequencer={this.handleSequence}
           changeVoice={this.handleChangeVoice}
+          changeSynthType={this.handleChangeType}
+          synthVoice={this.state.voice}
+          synthChange={this.handleSynthChange}
         />
-        <KeyBoard sendNote={this.getNote} />
+        <KeyBoard onClick={this.handleChangeType} sendNote={this.getNote} />
       </div>
     )
   }

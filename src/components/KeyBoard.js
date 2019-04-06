@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Key from './Key'
+import keys from '../constants/Constants'
 
 import styled from 'styled-components'
 
@@ -18,7 +19,6 @@ const KeyWrap = styled.div`
 
 class KeyBoard extends Component {
   state = { note: '' }
-  keys = ['a', 'w', 's', 'e', 'd', 'f', 't', 'g', 'y', 'h', 'u', 'j', 'k']
   keyNote = []
 
   handleUpdate = () => {
@@ -76,8 +76,12 @@ class KeyBoard extends Component {
     window.addEventListener('keypress', this.handleNoteChange)
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleNoteChange)
+  }
+
   render() {
-    const pianoKeys = this.keys.map(key => {
+    const pianoKeys = keys.keys.map(key => {
       return (
         <KeyWrap key={key} id={`${key}-key`}>
           <Key key={key} />

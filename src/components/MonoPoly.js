@@ -18,10 +18,22 @@ class MonoPoly extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleMono} className="ui left attached button">
+        <button
+          onClick={this.handleMono}
+          className={
+            'ui left attached button' +
+            (this.props.synthVoice === 'mono' ? ' active' : '')
+          }
+        >
           Mono
         </button>
-        <button onClick={this.handlePoly} className="right attached ui button">
+        <button
+          onClick={this.handlePoly}
+          className={
+            'ui right attached button' +
+            (this.props.synthVoice === 'poly' ? ' active' : '')
+          }
+        >
           Poly
         </button>
       </div>
