@@ -47,6 +47,10 @@ class Synth extends Component {
         this.synthMono = new Tone.AMSynth().chain(this.volume, Tone.Master)
         this.setState({ type: 'mono' })
         break
+      case 'FM':
+        this.synthMono = new Tone.FMSynth().chain(this.volume, Tone.Master)
+        this.setState({ type: 'mono' })
+        break
       default:
         break
     }
@@ -100,7 +104,7 @@ class Synth extends Component {
           sequencer={this.handleSequence}
           changeVoice={this.handleChangeVoice}
           changeSynthType={this.handleChangeType}
-          synthVoiceType={this.state.voice}
+          synthVoice={this.state.voice}
         />
         <KeyBoard onClick={this.handleChangeType} sendNote={this.getNote} />
       </div>

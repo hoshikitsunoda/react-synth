@@ -7,10 +7,10 @@ const ControlPanel = props => {
   return (
     <div>
       <Arpeggiator sendData={props.sendData} sequencer={props.sequencer} />
-      <MonoPoly changeVoice={props.changeVoice} />
+      <MonoPoly changeVoice={props.changeVoice} synthVoice={props.synthVoice} />
       <SynthType
         changeSynthType={props.changeSynthType}
-        synthVoiceType={props.synthVoiceType}
+        synthVoice={props.synthVoice}
       />
     </div>
   )
