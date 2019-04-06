@@ -7,12 +7,8 @@ class SynthType extends Component {
     this.props.changeSynthType(this.state.type)
   }
 
-  handleChangeType = event => {
+  onChange = event => {
     this.setState({ type: event.target.value }, this.handleUpdate)
-  }
-
-  onChange = () => {
-    this.handleChangeType()
     this.props.synthChange()
   }
 
