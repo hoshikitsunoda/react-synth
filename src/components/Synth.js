@@ -58,14 +58,22 @@ class Synth extends Component {
 
   handleSingleNote = () => {
     this.state.voice === 'mono'
-      ? this.synthMono.triggerAttack(this.state.note)
-      : this.synthPoly.triggerAttack(this.state.note)
+      ? Tone.context.resume().then(() => {
+          this.synthMono.triggerAttack(this.state.note)
+        })
+      : Tone.context.resume().then(() => {
+          this.synthPoly.triggerAttack(this.state.note)
+        })
   }
 
   handleSingleNoteRelease = () => {
     this.state.voice === 'mono'
-      ? this.synthMono.triggerRelease()
-      : this.synthPoly.releaseAll()
+      ? Tone.context.resume().then(() => {
+          this.synthMono.triggerRelease()
+        })
+      : Tone.context.resume().then(() => {
+          this.synthPoly.releaseAll()
+        })
   }
 
   handleSequence = () => {
