@@ -28,43 +28,43 @@ class KeyBoard extends Component {
   handleNoteChange = event => {
     switch (event.key) {
       case 'a':
-        this.setState({ note: 'C6' }, this.handleUpdate)
+        this.setState({ note: `C${this.props.octave}` }, this.handleUpdate)
         break
       case 'w':
-        this.setState({ note: 'C#6' }, this.handleUpdate)
+        this.setState({ note: `C#${this.props.octave}` }, this.handleUpdate)
         break
       case 's':
-        this.setState({ note: 'D6' }, this.handleUpdate)
+        this.setState({ note: `D${this.props.octave}` }, this.handleUpdate)
         break
       case 'e':
-        this.setState({ note: 'D#6' }, this.handleUpdate)
+        this.setState({ note: `D#${this.props.octave}` }, this.handleUpdate)
         break
       case 'd':
-        this.setState({ note: 'E6' }, this.handleUpdate)
+        this.setState({ note: `E${this.props.octave}` }, this.handleUpdate)
         break
       case 'f':
-        this.setState({ note: 'F6' }, this.handleUpdate)
+        this.setState({ note: `F${this.props.octave}` }, this.handleUpdate)
         break
       case 't':
-        this.setState({ note: 'F#6' }, this.handleUpdate)
+        this.setState({ note: `F#${this.props.octave}` }, this.handleUpdate)
         break
       case 'g':
-        this.setState({ note: 'G6' }, this.handleUpdate)
+        this.setState({ note: `G${this.props.octave}` }, this.handleUpdate)
         break
       case 'y':
-        this.setState({ note: 'G#6' }, this.handleUpdate)
+        this.setState({ note: `G#${this.props.octave}` }, this.handleUpdate)
         break
       case 'h':
-        this.setState({ note: 'A6' }, this.handleUpdate)
+        this.setState({ note: `A${this.props.octave}` }, this.handleUpdate)
         break
       case 'u':
-        this.setState({ note: 'A#6' }, this.handleUpdate)
+        this.setState({ note: `A#${this.props.octave}` }, this.handleUpdate)
         break
       case 'j':
-        this.setState({ note: 'B6' }, this.handleUpdate)
+        this.setState({ note: `B${this.props.octave}` }, this.handleUpdate)
         break
       case 'k':
-        this.setState({ note: 'C7' }, this.handleUpdate)
+        this.setState({ note: `C${this.props.octave + 1}` }, this.handleUpdate)
         break
       default:
         this.setState({ note: '' }, this.handleUpdate)

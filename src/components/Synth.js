@@ -5,7 +5,13 @@ import KeyBoard from './KeyBoard'
 import Tone from 'tone'
 
 class Synth extends Component {
-  state = { type: 'Mono', voice: 'mono', noteLength: '', note: '' }
+  state = {
+    type: 'Mono',
+    voice: 'mono',
+    noteLength: '',
+    note: '',
+    octave: 3
+  }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
   wah = new Tone.AutoWah()
@@ -31,6 +37,10 @@ class Synth extends Component {
 
   handleChangeType = type => {
     this.setState({ type: type }, this.handleSynthChange)
+  }
+
+  handleChangeOctave = octave => {
+    this.setState({ octave: octave })
   }
 
   handleSynthChange = () => {
@@ -113,8 +123,13 @@ class Synth extends Component {
           changeSynthType={this.handleChangeType}
           synthVoice={this.state.voice}
           synthChange={this.handleSynthChange}
+          octaveChange={this.handleChangeOctave}
         />
-        <KeyBoard onClick={this.handleChangeType} sendNote={this.getNote} />
+        <KeyBoard
+          onClick={this.handleChangeType}
+          sendNote={this.getNote}
+          octave={this.state.octave}
+        />
       </div>
     )
   }

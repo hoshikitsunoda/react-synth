@@ -2,6 +2,7 @@ import React from 'react'
 import Arpeggiator from './Arpeggiator'
 import MonoPoly from './MonoPoly'
 import SynthType from './SynthType'
+import OctaveChange from './OctaveChange'
 
 const ControlPanel = props => {
   return (
@@ -13,6 +14,7 @@ const ControlPanel = props => {
         synthVoice={props.synthVoice}
         synthChange={props.synthChange}
       />
+      <OctaveChange octaveChange={props.octaveChange} />
     </div>
   )
 }
