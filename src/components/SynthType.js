@@ -13,12 +13,20 @@ class SynthType extends Component {
 
   render() {
     return (
-      <select value={this.state.type} onChange={this.handleChangeType}>
-        <option value="Mono">MonoSynth</option>
-        <option value="Duo">DuoSynth</option>
-        <option value="AM">AMSynth</option>
-        <option value="FM">FMSynth</option>
-      </select>
+      <div>
+        {this.props.synthVoice === 'mono' ? (
+          <select value={this.state.type} onChange={this.handleChangeType}>
+            <option value="Mono">MonoSynth</option>
+            <option value="Duo">DuoSynth</option>
+            <option value="AM">AMSynth</option>
+            <option value="FM">FMSynth</option>
+          </select>
+        ) : (
+          <select value={this.state.type} onChange={this.handleChangeType}>
+            <option value="Poly">PolySynth</option>
+          </select>
+        )}
+      </div>
     )
   }
 }
