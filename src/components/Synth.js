@@ -10,7 +10,7 @@ class Synth extends Component {
     voice: 'mono',
     noteLength: '',
     note: '',
-    octave: 0
+    octave: 3
   }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
