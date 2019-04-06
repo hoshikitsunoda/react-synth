@@ -14,7 +14,7 @@ const ControlPanel = props => {
         synthVoice={props.synthVoice}
         synthChange={props.synthChange}
       />
-      <OctaveChange />
+      <OctaveChange octaveChange={props.octaveChange} />
     </div>
   )
 }
