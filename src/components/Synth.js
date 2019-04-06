@@ -104,7 +104,6 @@ class Synth extends Component {
   }
 
   render() {
-    this.handleSynthChange()
     return (
       <div>
         <ControlPanel
@@ -113,6 +112,7 @@ class Synth extends Component {
           changeVoice={this.handleChangeVoice}
           changeSynthType={this.handleChangeType}
           synthVoice={this.state.voice}
+          synthChange={this.handleSynthChange}
         />
         <KeyBoard onClick={this.handleChangeType} sendNote={this.getNote} />
       </div>

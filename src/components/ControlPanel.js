@@ -11,6 +11,7 @@ const ControlPanel = props => {
       <SynthType
         changeSynthType={props.changeSynthType}
         synthVoice={props.synthVoice}
+        synthChange={props.synthChange}
       />
     </div>
   )
