@@ -7,19 +7,24 @@ import BPMCounter from './BPMCounter'
 
 const ControlPanel = props => {
   const {
-    sendData,
+    sendNoteLength,
     sequencer,
     changeVoice,
     synthVoice,
     changeSynthType,
     synthChange,
     octaveChange,
-    bpmChange
+    bpmChange,
+    arpeggiatorNoteChange
   } = props
 
   return (
     <div>
-      <Arpeggiator sendData={sendData} sequencer={sequencer} />
+      <Arpeggiator
+        sendNoteLength={sendNoteLength}
+        arpeggiatorNoteChange={arpeggiatorNoteChange}
+        sequencer={sequencer}
+      />
       <MonoPoly changeVoice={changeVoice} synthVoice={synthVoice} />
       <SynthType
         changeSynthType={changeSynthType}

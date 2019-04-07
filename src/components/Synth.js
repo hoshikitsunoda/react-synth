@@ -8,19 +8,21 @@ class Synth extends Component {
   state = {
     type: 'Mono',
     voice: 'mono',
-    noteLength: '',
+    noteLength: '8n',
     note: '',
     octave: 3,
-    BPMCount: 100
+    BPMCount: 100,
+    steps: ['C3', 'C3', '', 'C3', 'C3', 'C3', 'C3', 'C4']
   }
 
-  delay = new Tone.PingPongDelay('8t', 0.2)
+  delay = new Tone.PingPongDelay('8t', 0.4)
   wah = new Tone.AutoWah()
   volume = new Tone.Volume(-30)
+  volume2 = new Tone.Volume(-20)
 
   synthArp = new Tone.AMSynth().chain(this.wah, this.delay, Tone.Master)
   synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
-  synthPoly = new Tone.PolySynth().chain(this.volume, Tone.Master)
+  synthPoly = new Tone.PolySynth().chain(this.volume2, Tone.Master)
 
   getNoteLength = length => {
     this.setState({ noteLength: length })
@@ -44,6 +46,10 @@ class Synth extends Component {
 
   handleBPMChange = bpm => {
     this.setState({ BPMCount: bpm })
+  }
+
+  handleArpeggiatorNotes = steps => {
+    this.setState({ steps: steps })
   }
 
   handleSynthChange = () => {
@@ -90,7 +96,7 @@ class Synth extends Component {
   }
 
   handleSequence = () => {
-    const notes = [['C3', 'B3'], ['E3', 'D3'], 'G3', ['A3', 'G3', 'F4']]
+    const notes = this.state.steps
     const sequence = new Tone.Sequence(
       (time, note) => {
         this.synthArp.triggerAttackRelease(note, '100hz', time)
@@ -102,7 +108,6 @@ class Synth extends Component {
     sequence.start()
     Tone.Transport.toggle()
 
-    // change this value to change tempo
     Tone.Transport.bpm.value = this.state.BPMCount
   }
 
@@ -120,7 +125,7 @@ class Synth extends Component {
     return (
       <div>
         <ControlPanel
-          sendData={this.getNoteLength}
+          sendNoteLength={this.getNoteLength}
           sequencer={this.handleSequence}
           changeVoice={this.handleVoiceChange}
           changeSynthType={this.handleTypeChange}
@@ -128,6 +133,7 @@ class Synth extends Component {
           synthChange={this.handleSynthChange}
           octaveChange={this.handleOctaveChange}
           bpmChange={this.handleBPMChange}
+          arpeggiatorNoteChange={this.handleArpeggiatorNotes}
         />
         <KeyBoard
           onClick={this.handleChangeType}

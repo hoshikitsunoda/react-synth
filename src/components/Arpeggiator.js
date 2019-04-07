@@ -1,14 +1,31 @@
 import React, { Component } from 'react'
+import { notes, noteLengthValue } from '../constants/Constants'
 
 class Arpeggiator extends Component {
-  state = { noteLength: '', active: false }
+  state = { noteLength: '', active: false, steps: [] }
+  sequenceNotes = []
 
-  handleUpdate = () => {
-    this.props.sendData(this.state.noteLength)
+  handleNoteLengthUpdate = () => {
+    this.props.sendNoteLength(this.state.noteLength)
+  }
+
+  handleArpeggiatorNoteUpdate = () => {
+    this.props.arpeggiatorNoteChange(this.state.steps)
   }
 
   handleSelectChange = event => {
-    this.setState({ noteLength: event.target.value }, this.handleUpdate)
+    this.setState(
+      { noteLength: event.target.value },
+      this.handleNoteLengthUpdate
+    )
+  }
+
+  handleSequenceInput = () => {
+    const steps = []
+    this.sequenceNotes.forEach(item => {
+      steps.push(item.value)
+    })
+    this.setState({ steps: steps }, this.handleArpeggiatorNoteUpdate)
   }
 
   onClick = () => {
@@ -18,43 +35,46 @@ class Arpeggiator extends Component {
   }
 
   render() {
+    const noteLengthList = noteLengthValue.map((value, index) => {
+      return (
+        <div key={index}>
+          <input
+            onChange={this.handleSelectChange}
+            name="note-length"
+            type="radio"
+            value={value}
+            defaultChecked={value === '8n' ? 'defaultChecked' : ''}
+          />
+          <label htmlFor={value}>{`1/${value.slice(0, -1)}`}</label>
+        </div>
+      )
+    })
+
+    const noteList = notes.map((note, index) => {
+      return (
+        <option key={index} value={`${note === 'skip' ? '' : note + '3'}`}>
+          {note}
+        </option>
+      )
+    })
+
+    const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map(item => {
+      return (
+        <select
+          onChange={this.handleSequenceInput}
+          key={item}
+          name={`step-${item}`}
+          id={`step-${item}`}
+          ref={ref => (this.sequenceNotes[item] = ref)}
+        >
+          {noteList}
+        </select>
+      )
+    })
     return (
       <div>
-        <input
-          onChange={this.handleSelectChange}
-          name="note-length"
-          type="radio"
-          value="2n"
-        />
-        <label htmlFor="2n">1/2</label>
-        <input
-          onChange={this.handleSelectChange}
-          name="note-length"
-          type="radio"
-          value="4n"
-        />
-        <label htmlFor="4n">1/4</label>
-        <input
-          onChange={this.handleSelectChange}
-          name="note-length"
-          type="radio"
-          value="8n"
-        />
-        <label htmlFor="8n">1/8</label>
-        <input
-          onChange={this.handleSelectChange}
-          name="note-length"
-          type="radio"
-          value="16n"
-        />
-        <label htmlFor="16n">1/16</label>
-        <input
-          onChange={this.handleSelectChange}
-          name="note-length"
-          type="radio"
-          value="32n"
-        />
-        <label htmlFor="32n">1/32</label>
+        <div className="noteLength">{noteLengthList}</div>
+        <div className="sequence">{sequence}</div>
         <button
           onClick={this.onClick}
           className={`ui toggle button ${this.state.active ? ' active' : ''}`}
