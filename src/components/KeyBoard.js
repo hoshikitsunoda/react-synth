@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import keys from '../constants/Constants'
+import { keys } from '../constants/Constants'
 
 import styled from 'styled-components'
 
@@ -179,7 +179,7 @@ class KeyBoard extends Component {
   }
 
   render() {
-    const pianoKeys = keys.keys.map((key, index) => {
+    const pianoKeys = keys.map((key, index) => {
       return (
         <KeyWrap
           key={key}
