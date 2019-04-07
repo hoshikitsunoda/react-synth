@@ -11,7 +11,7 @@ class Synth extends Component {
     noteLength: '',
     note: '',
     octave: 3,
-    BPM: 100
+    BPMCount: 100
   }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
@@ -99,7 +99,7 @@ class Synth extends Component {
     Tone.Transport.toggle()
 
     // change this value to change tempo
-    Tone.Transport.bpm.value = this.state.BPM
+    Tone.Transport.bpm.value = this.state.BPMCount
   }
 
   componentDidMount() {

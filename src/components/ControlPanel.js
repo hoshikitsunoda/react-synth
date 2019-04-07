@@ -3,6 +3,7 @@ import Arpeggiator from './Arpeggiator'
 import MonoPoly from './MonoPoly'
 import SynthType from './SynthType'
 import OctaveChange from './OctaveChange'
+import BPMCounter from './BPMCounter'
 
 const ControlPanel = props => {
   const {
@@ -25,6 +26,7 @@ const ControlPanel = props => {
         synthChange={synthChange}
       />
       <OctaveChange octaveChange={octaveChange} />
+      <BPMCounter />
     </div>
   )
 }
