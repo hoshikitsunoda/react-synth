@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class Arpeggiator extends Component {
-  state = { noteLength: '', active: false }
+  state = { noteLength: '', active: false, steps: [] }
 
   handleUpdate = () => {
     this.props.sendData(this.state.noteLength)
