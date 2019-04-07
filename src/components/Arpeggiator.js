@@ -12,7 +12,6 @@ class Arpeggiator extends Component {
   }
 
   onClick = () => {
-    console.log(this.state.active)
     const isActive = this.state.active
     this.setState({ active: !isActive })
     this.props.sequencer()
@@ -58,7 +57,7 @@ class Arpeggiator extends Component {
         <label htmlFor="32n">1/32</label>
         <button
           onClick={this.onClick}
-          className={'ui toggle button' + (this.state.active ? ' active' : '')}
+          className={`ui toggle button ${this.state.active ? ' active' : ''}`}
         >
           Arp
         </button>

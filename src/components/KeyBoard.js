@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Key from './Key'
 import keys from '../constants/Constants'
 
 import styled from 'styled-components'
