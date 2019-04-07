@@ -13,7 +13,8 @@ const ControlPanel = props => {
     synthVoice,
     changeSynthType,
     synthChange,
-    octaveChange
+    octaveChange,
+    bpmChange
   } = props
 
   return (
@@ -26,7 +27,7 @@ const ControlPanel = props => {
         synthChange={synthChange}
       />
       <OctaveChange octaveChange={octaveChange} />
-      <BPMCounter />
+      <BPMCounter bpmChange={bpmChange} />
     </div>
   )
 }

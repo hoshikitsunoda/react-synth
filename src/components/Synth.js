@@ -42,6 +42,10 @@ class Synth extends Component {
     this.setState({ octave: octave })
   }
 
+  handleBPMChange = bpm => {
+    this.setState({ BPMCount: bpm })
+  }
+
   handleSynthChange = () => {
     switch (this.state.type) {
       case 'Mono':
@@ -123,6 +127,7 @@ class Synth extends Component {
           synthVoice={this.state.voice}
           synthChange={this.handleSynthChange}
           octaveChange={this.handleChangeOctave}
+          bpmChange={this.handleBPMChange}
         />
         <KeyBoard
           onClick={this.handleChangeType}
