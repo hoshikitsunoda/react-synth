@@ -72,20 +72,121 @@ class KeyBoard extends Component {
     }
   }
 
-  componentDidMount() {
-    window.addEventListener('keypress', this.handleNoteChange)
+  handleAddbackground = event => {
+    switch (event.key) {
+      case 'a':
+        this.keyNote[0].style.backgroundColor = 'lightgrey'
+        break
+      case 'w':
+        this.keyNote[1].style.backgroundColor = 'lightgrey'
+        break
+      case 's':
+        this.keyNote[2].style.backgroundColor = 'lightgrey'
+        break
+      case 'e':
+        this.keyNote[3].style.backgroundColor = 'lightgrey'
+        break
+      case 'd':
+        this.keyNote[4].style.backgroundColor = 'lightgrey'
+        break
+      case 'f':
+        this.keyNote[5].style.backgroundColor = 'lightgrey'
+        break
+      case 't':
+        this.keyNote[6].style.backgroundColor = 'lightgrey'
+        break
+      case 'g':
+        this.keyNote[7].style.backgroundColor = 'lightgrey'
+        break
+      case 'y':
+        this.keyNote[8].style.backgroundColor = 'lightgrey'
+        break
+      case 'h':
+        this.keyNote[9].style.backgroundColor = 'lightgrey'
+        break
+      case 'u':
+        this.keyNote[10].style.backgroundColor = 'lightgrey'
+        break
+      case 'j':
+        this.keyNote[11].style.backgroundColor = 'lightgrey'
+        break
+      case 'k':
+        this.keyNote[12].style.backgroundColor = 'lightgrey'
+        break
+      default:
+        break
+    }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleNoteChange)
+  handleRemovebackground = event => {
+    switch (event.key) {
+      case 'a':
+        this.keyNote[0].style.backgroundColor = 'white'
+        break
+      case 'w':
+        this.keyNote[1].style.backgroundColor = 'white'
+        break
+      case 's':
+        this.keyNote[2].style.backgroundColor = 'white'
+        break
+      case 'e':
+        this.keyNote[3].style.backgroundColor = 'white'
+        break
+      case 'd':
+        this.keyNote[4].style.backgroundColor = 'white'
+        break
+      case 'f':
+        this.keyNote[5].style.backgroundColor = 'white'
+        break
+      case 't':
+        this.keyNote[6].style.backgroundColor = 'white'
+        break
+      case 'g':
+        this.keyNote[7].style.backgroundColor = 'white'
+        break
+      case 'y':
+        this.keyNote[8].style.backgroundColor = 'white'
+        break
+      case 'h':
+        this.keyNote[9].style.backgroundColor = 'white'
+        break
+      case 'u':
+        this.keyNote[10].style.backgroundColor = 'white'
+        break
+      case 'j':
+        this.keyNote[11].style.backgroundColor = 'white'
+        break
+      case 'k':
+        this.keyNote[12].style.backgroundColor = 'white'
+        break
+      default:
+        break
+    }
+  }
+
+  onKeypress = event => {
+    this.handleNoteChange(event)
+    this.handleAddbackground(event)
+  }
+
+  onKeyup = event => {
+    this.handleNoteChange(event)
+    this.handleRemovebackground(event)
+  }
+
+  componentDidMount() {
+    window.addEventListener('keypress', this.onKeypress)
+    window.addEventListener('keyup', this.onKeyup)
   }
 
   render() {
-    const pianoKeys = keys.keys.map(key => {
+    const pianoKeys = keys.keys.map((key, index) => {
       return (
-        <KeyWrap key={key} id={`${key}-key`}>
-          <Key key={key} />
-        </KeyWrap>
+        <KeyWrap
+          key={key}
+          id={`${key}-key`}
+          ref={ref => (this.keyNote[index] = ref)}
+        />
       )
     })
     return <KeyboardBox>{pianoKeys}</KeyboardBox>

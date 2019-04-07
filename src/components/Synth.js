@@ -21,8 +21,6 @@ class Synth extends Component {
   synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
   synthPoly = new Tone.PolySynth().chain(this.volume, Tone.Master)
 
-  note = this.state.note
-
   getNoteLength = length => {
     this.setState({ noteLength: length })
   }
