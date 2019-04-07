@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 class Arpeggiator extends Component {
-  state = { noteLength: '' }
+  state = { noteLength: '', active: false }
 
   handleUpdate = () => {
     this.props.sendData(this.state.noteLength)
@@ -9,6 +9,12 @@ class Arpeggiator extends Component {
 
   handleSelectChange = event => {
     this.setState({ noteLength: event.target.value }, this.handleUpdate)
+  }
+
+  onClick = () => {
+    const isActive = this.state.active
+    this.setState({ active: !isActive })
+    this.props.sequencer()
   }
 
   render() {
@@ -49,7 +55,10 @@ class Arpeggiator extends Component {
           value="32n"
         />
         <label htmlFor="32n">1/32</label>
-        <button onClick={this.props.sequencer} className="ui toggle button">
+        <button
+          onClick={this.onClick}
+          className={`ui toggle button ${this.state.active ? ' active' : ''}`}
+        >
           Arp
         </button>
       </div>

@@ -10,7 +10,8 @@ class Synth extends Component {
     voice: 'mono',
     noteLength: '',
     note: '',
-    octave: 3
+    octave: 3,
+    BPMCount: 100
   }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
@@ -21,8 +22,6 @@ class Synth extends Component {
   synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
   synthPoly = new Tone.PolySynth().chain(this.volume, Tone.Master)
 
-  note = this.state.note
-
   getNoteLength = length => {
     this.setState({ noteLength: length })
   }
@@ -31,16 +30,20 @@ class Synth extends Component {
     this.setState({ note: note })
   }
 
-  handleChangeVoice = voice => {
+  handleVoiceChange = voice => {
     this.setState({ voice: voice })
   }
 
-  handleChangeType = type => {
+  handleTypeChange = type => {
     this.setState({ type: type }, this.handleSynthChange)
   }
 
-  handleChangeOctave = octave => {
+  handleOctaveChange = octave => {
     this.setState({ octave: octave })
+  }
+
+  handleBPMChange = bpm => {
+    this.setState({ BPMCount: bpm })
   }
 
   handleSynthChange = () => {
@@ -100,7 +103,7 @@ class Synth extends Component {
     Tone.Transport.toggle()
 
     // change this value to change tempo
-    Tone.Transport.bpm.value = 100
+    Tone.Transport.bpm.value = this.state.BPMCount
   }
 
   componentDidMount() {
@@ -119,11 +122,12 @@ class Synth extends Component {
         <ControlPanel
           sendData={this.getNoteLength}
           sequencer={this.handleSequence}
-          changeVoice={this.handleChangeVoice}
-          changeSynthType={this.handleChangeType}
+          changeVoice={this.handleVoiceChange}
+          changeSynthType={this.handleTypeChange}
           synthVoice={this.state.voice}
           synthChange={this.handleSynthChange}
-          octaveChange={this.handleChangeOctave}
+          octaveChange={this.handleOctaveChange}
+          bpmChange={this.handleBPMChange}
         />
         <KeyBoard
           onClick={this.handleChangeType}

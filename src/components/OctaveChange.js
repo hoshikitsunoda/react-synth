@@ -8,20 +8,22 @@ class OctaveChange extends Component {
   }
 
   handleOctaveChange = event => {
-    this.setState({ octave: event.target.value }, this.handleUpdate)
+    this.setState({ octave: parseInt(event.target.value) }, this.handleUpdate)
   }
 
   render() {
     return (
       <div>
+        <label htmlFor="Octave">Octave</label>
         <input
           onChange={this.handleOctaveChange}
-          type="number"
+          type="range"
           value={this.state.octave}
           name="octave"
           min="0"
           max="7"
         />
+        <div>{this.state.octave}</div>
       </div>
     )
   }
