@@ -3,6 +3,7 @@ import notes from '../constants/Constants'
 
 class Arpeggiator extends Component {
   state = { noteLength: '', active: false, steps: [] }
+  sequenceNotes = []
 
   handleUpdate = () => {
     this.props.sendData(this.state.noteLength)
@@ -12,10 +13,21 @@ class Arpeggiator extends Component {
     this.setState({ noteLength: event.target.value }, this.handleUpdate)
   }
 
+  handleSequenceInput = () => {
+    const result = []
+    this.sequenceNotes.forEach(item => {
+      result.push(item.value)
+    })
+    this.setState({ steps: result }, () => {
+      console.log(this.state.steps)
+    })
+  }
+
   onClick = () => {
     const isActive = this.state.active
     this.setState({ active: !isActive })
     this.props.sequencer()
+    this.handleSequenceInput()
   }
 
   render() {
@@ -29,7 +41,12 @@ class Arpeggiator extends Component {
 
     const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map(item => {
       return (
-        <select key={item} name={`step-${item}`} id="">
+        <select
+          key={item}
+          name={`step-${item}`}
+          id={`step-${item}`}
+          ref={ref => (this.sequenceNotes[item] = ref)}
+        >
           {noteList}
         </select>
       )
