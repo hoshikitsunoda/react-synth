@@ -14,6 +14,7 @@ class OctaveChange extends Component {
   render() {
     return (
       <div>
+        <label htmlFor="Octave">Octave</label>
         <input
           onChange={this.handleOctaveChange}
           type="range"

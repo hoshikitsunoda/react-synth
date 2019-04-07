@@ -14,6 +14,7 @@ class BPMCounter extends Component {
   render() {
     return (
       <div>
+        <label htmlFor="BPM">BPM</label>
         <input
           onChange={this.handleBPMChange}
           type="range"

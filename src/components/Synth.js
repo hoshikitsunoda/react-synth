@@ -30,15 +30,15 @@ class Synth extends Component {
     this.setState({ note: note })
   }
 
-  handleChangeVoice = voice => {
+  handleVoiceChange = voice => {
     this.setState({ voice: voice })
   }
 
-  handleChangeType = type => {
+  handleTypeChange = type => {
     this.setState({ type: type }, this.handleSynthChange)
   }
 
-  handleChangeOctave = octave => {
+  handleOctaveChange = octave => {
     this.setState({ octave: octave })
   }
 
@@ -122,11 +122,11 @@ class Synth extends Component {
         <ControlPanel
           sendData={this.getNoteLength}
           sequencer={this.handleSequence}
-          changeVoice={this.handleChangeVoice}
-          changeSynthType={this.handleChangeType}
+          changeVoice={this.handleVoiceChange}
+          changeSynthType={this.handleTypeChange}
           synthVoice={this.state.voice}
           synthChange={this.handleSynthChange}
-          octaveChange={this.handleChangeOctave}
+          octaveChange={this.handleOctaveChange}
           bpmChange={this.handleBPMChange}
         />
         <KeyBoard
