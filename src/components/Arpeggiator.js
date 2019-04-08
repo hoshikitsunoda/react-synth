@@ -4,7 +4,7 @@ import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 import { notes, noteLengthValue } from '../constants/Constants'
 
 class Arpeggiator extends Component {
-  state = { noteLength: '', active: false, steps: [] }
+  state = { noteLength: '', active: false, steps: [], octave: 3 }
   sequenceNotes = []
 
   handleNoteLengthUpdate = () => {
@@ -28,6 +28,10 @@ class Arpeggiator extends Component {
       steps.push(item.value)
     })
     this.setState({ steps: steps }, this.handleArpeggiatorNoteUpdate)
+  }
+
+  handleArpeggiatorOctave = octave => {
+    this.setState({ octave: octave })
   }
 
   onClick = () => {
@@ -77,7 +81,9 @@ class Arpeggiator extends Component {
       <div>
         <div className="noteLength">{noteLengthList}</div>
         <div className="sequence">{sequence}</div>
-        <ArpeggiatorOctaveMeter />
+        <ArpeggiatorOctaveMeter
+          ArpeggiatorOctave={this.handleArpeggiatorOctave}
+        />
         <button
           onClick={this.onClick}
           className={`ui toggle button ${this.state.active ? ' active' : ''}`}
