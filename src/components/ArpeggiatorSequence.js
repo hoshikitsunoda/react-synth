@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 import { notes } from '../constants/Constants'
 
 class ArpeggiatorSequence extends Component {
-  state = { steps: [] }
+  state = { steps: [], octave: 3 }
   sequenceNotes = []
 
   handleArpeggiatorNoteUpdate = () => {
@@ -14,8 +15,11 @@ class ArpeggiatorSequence extends Component {
     this.sequenceNotes.forEach(item => {
       steps.push(item.value)
     })
-    console.log(steps)
     this.setState({ steps: steps }, this.handleArpeggiatorNoteUpdate)
+  }
+
+  handleArpeggiatorOctave = octave => {
+    this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
   render() {
@@ -44,7 +48,14 @@ class ArpeggiatorSequence extends Component {
       )
     })
 
-    return <div>{sequence}</div>
+    return (
+      <div>
+        <div>{sequence}</div>
+        <ArpeggiatorOctaveMeter
+          arpeggiatorOctave={this.handleArpeggiatorOctave}
+        />
+      </div>
+    )
   }
 }
 
