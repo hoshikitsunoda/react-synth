@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class ArpeggiatorOctaveMeter extends Component {
-  state = {  }
-  render() { 
-    return (  );
+  state = { octave: 3 }
+  render() {
+    return <div>AOM</div>
   }
 }
- 
-export default ArpeggiatorOctaveMeter;
+
+export default ArpeggiatorOctaveMeter

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
+
 import { notes, noteLengthValue } from '../constants/Constants'
 
 class Arpeggiator extends Component {
@@ -75,6 +77,7 @@ class Arpeggiator extends Component {
       <div>
         <div className="noteLength">{noteLengthList}</div>
         <div className="sequence">{sequence}</div>
+        <ArpeggiatorOctaveMeter />
         <button
           onClick={this.onClick}
           className={`ui toggle button ${this.state.active ? ' active' : ''}`}
