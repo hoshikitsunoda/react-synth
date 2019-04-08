@@ -2,18 +2,13 @@ import React, { Component } from 'react'
 import ArpeggiatorSequence from './ArpeggiatorSequence'
 import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 
-import { notes, noteLengthValue } from '../constants/Constants'
+import { noteLengthValue } from '../constants/Constants'
 
 class Arpeggiator extends Component {
   state = { noteLength: '', active: false, steps: [], octave: 3 }
-  sequenceNotes = []
 
   handleNoteLengthUpdate = () => {
     this.props.sendNoteLength(this.state.noteLength)
-  }
-
-  handleArpeggiatorNoteUpdate = () => {
-    this.props.arpeggiatorNoteChange(this.state.steps)
   }
 
   handleSelectChange = event => {
@@ -23,11 +18,7 @@ class Arpeggiator extends Component {
     )
   }
 
-  handleSequenceInput = () => {
-    const steps = []
-    this.sequenceNotes.forEach(item => {
-      steps.push(item.value)
-    })
+  handleSequenceInput = steps => {
     this.setState({ steps: steps }, this.handleArpeggiatorNoteUpdate)
   }
 
@@ -57,34 +48,13 @@ class Arpeggiator extends Component {
       )
     })
 
-    const noteList = notes.map((note, index) => {
-      return (
-        <option
-          key={index}
-          value={`${note === 'skip' ? '' : note + this.state.octave}`}
-        >
-          {note}
-        </option>
-      )
-    })
-
-    const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map(item => {
-      return (
-        <select
-          onChange={this.handleSequenceInput}
-          key={item}
-          name={`step-${item}`}
-          id={`step-${item}`}
-          ref={ref => (this.sequenceNotes[item] = ref)}
-        >
-          {noteList}
-        </select>
-      )
-    })
     return (
       <div>
         <div className="noteLength">{noteLengthList}</div>
-        <div className="sequence">{sequence}</div>
+        <ArpeggiatorSequence
+          arpeggiatorNoteChange={this.props.arpeggiatorNoteChange}
+          octave={this.state.octave}
+        />
         <ArpeggiatorOctaveMeter
           arpeggiatorOctave={this.handleArpeggiatorOctave}
         />
