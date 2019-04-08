@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import ArpeggiatorSequence from './ArpeggiatorSequence'
 import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 
 import { notes, noteLengthValue } from '../constants/Constants'
