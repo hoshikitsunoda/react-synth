@@ -12,7 +12,7 @@ class Synth extends Component {
     note: '',
     octave: 3,
     BPMCount: 100,
-    steps: ['C3', 'C3', '', 'C3', 'C3', 'C3', 'C3', 'C4']
+    steps: ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C4']
   }
 
   delay = new Tone.PingPongDelay('8t', 0.4)
