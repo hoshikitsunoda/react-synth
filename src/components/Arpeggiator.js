@@ -31,7 +31,7 @@ class Arpeggiator extends Component {
   }
 
   handleArpeggiatorOctave = octave => {
-    this.setState({ octave: octave })
+    this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
   onClick = () => {
@@ -58,7 +58,10 @@ class Arpeggiator extends Component {
 
     const noteList = notes.map((note, index) => {
       return (
-        <option key={index} value={`${note === 'skip' ? '' : note + '3'}`}>
+        <option
+          key={index}
+          value={`${note === 'skip' ? '' : note + this.state.octave}`}
+        >
           {note}
         </option>
       )
