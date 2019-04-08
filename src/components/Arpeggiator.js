@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
+import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
+
 import { notes, noteLengthValue } from '../constants/Constants'
 
 class Arpeggiator extends Component {
-  state = { noteLength: '', active: false, steps: [] }
+  state = { noteLength: '', active: false, steps: [], octave: 3 }
   sequenceNotes = []
 
   handleNoteLengthUpdate = () => {
@@ -26,6 +28,10 @@ class Arpeggiator extends Component {
       steps.push(item.value)
     })
     this.setState({ steps: steps }, this.handleArpeggiatorNoteUpdate)
+  }
+
+  handleArpeggiatorOctave = octave => {
+    this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
   onClick = () => {
@@ -52,7 +58,10 @@ class Arpeggiator extends Component {
 
     const noteList = notes.map((note, index) => {
       return (
-        <option key={index} value={`${note === 'skip' ? '' : note + '3'}`}>
+        <option
+          key={index}
+          value={`${note === 'skip' ? '' : note + this.state.octave}`}
+        >
           {note}
         </option>
       )
@@ -75,6 +84,9 @@ class Arpeggiator extends Component {
       <div>
         <div className="noteLength">{noteLengthList}</div>
         <div className="sequence">{sequence}</div>
+        <ArpeggiatorOctaveMeter
+          arpeggiatorOctave={this.handleArpeggiatorOctave}
+        />
         <button
           onClick={this.onClick}
           className={`ui toggle button ${this.state.active ? ' active' : ''}`}
