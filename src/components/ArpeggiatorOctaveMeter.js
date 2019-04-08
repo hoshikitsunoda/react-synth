@@ -3,8 +3,15 @@ import React, { Component } from 'react'
 class ArpeggiatorOctaveMeter extends Component {
   state = { octave: 3 }
 
+  handleOctaveChange = () => {
+    this.props.arpeggiatorOctave(this.state.octave)
+  }
+
   onChange = event => {
-    this.setState({ octave: parseInt(event.target.value) })
+    this.setState(
+      { octave: parseInt(event.target.value) },
+      this.handleOctaveChange
+    )
   }
 
   render() {

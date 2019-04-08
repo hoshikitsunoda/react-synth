@@ -82,7 +82,7 @@ class Arpeggiator extends Component {
         <div className="noteLength">{noteLengthList}</div>
         <div className="sequence">{sequence}</div>
         <ArpeggiatorOctaveMeter
-          ArpeggiatorOctave={this.handleArpeggiatorOctave}
+          arpeggiatorOctave={this.handleArpeggiatorOctave}
         />
         <button
           onClick={this.onClick}
