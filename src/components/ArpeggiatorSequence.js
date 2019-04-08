@@ -1,16 +1,10 @@
 import React, { Component } from 'react'
-import ArpeggiatorNoteLength from './ArpeggiatorNoteLength'
 import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
-
 import { notes } from '../constants/Constants'
 
-class Arpeggiator extends Component {
-  state = { noteLength: '', active: false, steps: [], octave: 3 }
+class ArpeggiatorSequence extends Component {
+  state = { steps: [], octave: 3 }
   sequenceNotes = []
-
-  handleSelectChange = noteLength => {
-    this.setState({ noteLength: noteLength })
-  }
 
   handleArpeggiatorNoteUpdate = () => {
     this.props.arpeggiatorNoteChange(this.state.steps)
@@ -28,18 +22,12 @@ class Arpeggiator extends Component {
     this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
-  onClick = () => {
-    const isActive = this.state.active
-    this.setState({ active: !isActive })
-    this.props.sequencer()
-  }
-
   render() {
     const noteList = notes.map((note, index) => {
       return (
         <option
           key={index}
-          value={`${note === 'skip' ? '' : note + this.state.octave}`}
+          value={`${note === 'skip' ? '' : note + this.props.octave}`}
         >
           {note}
         </option>
@@ -59,22 +47,16 @@ class Arpeggiator extends Component {
         </select>
       )
     })
+
     return (
       <div>
-        <ArpeggiatorNoteLength sendNoteLength={this.props.sendNoteLength} />
-        <div className="sequence">{sequence}</div>
+        <div>{sequence}</div>
         <ArpeggiatorOctaveMeter
           arpeggiatorOctave={this.handleArpeggiatorOctave}
         />
-        <button
-          onClick={this.onClick}
-          className={`ui toggle button ${this.state.active ? ' active' : ''}`}
-        >
-          Arp
-        </button>
       </div>
     )
   }
 }
 
-export default Arpeggiator
+export default ArpeggiatorSequence
