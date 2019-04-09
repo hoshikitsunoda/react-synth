@@ -1,6 +1,51 @@
 import React, { Component } from 'react'
 
+import styled from 'styled-components'
+
 import { noteLengthValue } from '../constants/Constants'
+
+const LengthIndicatorBox = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 2px groove;
+  padding: 10px 0;
+  background-color: rgba(0, 0, 0, 0.15);
+`
+const LengthIndicator = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px 10px;
+  border: 4px groove;
+  width: 7rem;
+  background-color: rgba(0, 0, 0, 0.3);
+`
+
+const IndicatorLabel = styled.label`
+  color: #aaa;
+  font-weight: bold;
+  transition: 0.3s;
+  margin-top: 0.3rem;
+`
+
+const Indicator = styled.input`
+  margin-right: 0.5rem;
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 3px groove #cacece;
+  padding: 0.7rem;
+  border-radius: 0.3rem;
+  outline: none;
+
+  &:checked + ${IndicatorLabel} {
+    color: #ffaf37;
+  }
+
+  &:checked {
+    background-color: #ffaf37;
+    border: 3px groove;
+  }
+`
 
 class ArpeggiatorNoteLength extends Component {
   state = { noteLength: '' }
@@ -19,20 +64,23 @@ class ArpeggiatorNoteLength extends Component {
   render() {
     const noteLengthList = noteLengthValue.map((value, index) => {
       return (
-        <div key={index}>
-          <input
+        <LengthIndicator key={index}>
+          <Indicator
             onChange={this.handleSelectChange}
             name="note-length"
             type="radio"
             value={value}
             defaultChecked={value === '8n' ? 'defaultChecked' : ''}
           />
-          <label htmlFor={value}>{`1/${value.slice(0, -1)}`}</label>
-        </div>
+          <IndicatorLabel htmlFor={value}>{`1/${value.slice(
+            0,
+            -1
+          )}`}</IndicatorLabel>
+        </LengthIndicator>
       )
     })
 
-    return <div>{noteLengthList}</div>
+    return <LengthIndicatorBox>{noteLengthList}</LengthIndicatorBox>
   }
 }
 
