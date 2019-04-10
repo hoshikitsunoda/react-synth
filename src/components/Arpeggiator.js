@@ -2,7 +2,24 @@ import React, { Component } from 'react'
 import ArpeggiatorNoteLength from './ArpeggiatorNoteLength'
 import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 
+import styled from 'styled-components'
+
 import { notes } from '../constants/Constants'
+
+const SequenceWrap = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 0.2rem groove;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.3) 100%
+  );
+`
+
+const ButtonWrap = styled.div``
 
 class Arpeggiator extends Component {
   state = { noteLength: '', active: false, steps: [], octave: 3 }
@@ -28,10 +45,12 @@ class Arpeggiator extends Component {
     this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
-  onClick = () => {
+  onClick = event => {
     const isActive = this.state.active
     this.setState({ active: !isActive })
-    this.props.sequencer()
+    if (!event.repeat) {
+      this.props.sequencer()
+    }
   }
 
   render() {
@@ -62,16 +81,23 @@ class Arpeggiator extends Component {
     return (
       <div>
         <ArpeggiatorNoteLength sendNoteLength={this.props.sendNoteLength} />
-        <div className="sequence">{sequence}</div>
-        <ArpeggiatorOctaveMeter
-          arpeggiatorOctave={this.handleArpeggiatorOctave}
-        />
-        <button
-          onClick={this.onClick}
-          className={`ui toggle button ${this.state.active ? ' active' : ''}`}
-        >
-          Arp
-        </button>
+        <SequenceWrap>
+          <div className="sequence">{sequence}</div>
+          <ArpeggiatorOctaveMeter
+            arpeggiatorOctave={this.handleArpeggiatorOctave}
+          />
+          <ButtonWrap>
+            <button
+              id="arp-start"
+              onClick={this.onClick}
+              className={`ui toggle button ${
+                this.state.active ? ' active' : ''
+              }`}
+            >
+              Arp
+            </button>
+          </ButtonWrap>
+        </SequenceWrap>
       </div>
     )
   }

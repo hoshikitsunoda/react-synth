@@ -5,6 +5,7 @@ import KeyBoard from './KeyBoard'
 import styled from 'styled-components'
 
 import Tone from 'tone'
+import { domainToASCII } from 'url'
 
 const SynthBody = styled.div`
   flex: 1;
@@ -132,14 +133,18 @@ class Synth extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keypress', this.handleSingleNote)
+    window.addEventListener('keypress', event => {
+      if (!event.repeat) {
+        this.handleSingleNote()
+      }
+    })
     window.addEventListener('keyup', this.handleSingleNoteRelease)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('keypress', this.handleSingleNote)
-    window.removeEventListener('keyup', this.handleSingleNoteRelease)
-  }
+  // componentWillUnmount() {
+  //   window.removeEventListener('keypress', this.handleSingleNote)
+  //   window.removeEventListener('keyup', this.handleSingleNoteRelease)
+  // }
 
   render() {
     return (
