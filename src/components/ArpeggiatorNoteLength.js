@@ -18,7 +18,7 @@ const LengthIndicator = styled.div`
   padding: 0.4rem 0.8rem;
   border: 0.3rem groove;
   width: 7rem;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.6);
 `
 
 const IndicatorLabel = styled.label`
