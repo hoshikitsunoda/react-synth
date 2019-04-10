@@ -7,16 +7,16 @@ import { noteLengthValue } from '../constants/Constants'
 const LengthIndicatorBox = styled.div`
   display: flex;
   justify-content: space-evenly;
-  border-bottom: 2px groove;
-  padding: 10px 0;
+  border-bottom: 0.2rem groove;
+  padding: 0.8rem 0;
   background-color: rgba(0, 0, 0, 0.15);
 `
 const LengthIndicator = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px 10px;
-  border: 4px groove;
+  padding: 0.4rem 0.8rem;
+  border: 0.3rem groove;
   width: 7rem;
   background-color: rgba(0, 0, 0, 0.3);
 `
@@ -32,7 +32,7 @@ const Indicator = styled.input`
   margin-right: 0.5rem;
   -webkit-appearance: none;
   background-color: #fafafa;
-  border: 3px groove #cacece;
+  border: 0.2rem groove #cacece;
   padding: 0.7rem;
   border-radius: 0.3rem;
   outline: none;
@@ -43,7 +43,7 @@ const Indicator = styled.input`
 
   &:checked {
     background-color: #ffaf37;
-    border: 3px groove;
+    border: 0.2rem groove;
   }
 `
 
