@@ -11,6 +11,10 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Orbitron', sans-serif !important;
   }
 
+  #arp-start {
+    background: #cacbcd;
+  }
+
   button.active,
   #arp-start.active {
     background-color: #ffaf37 !important;
