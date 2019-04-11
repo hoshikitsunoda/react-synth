@@ -96,6 +96,7 @@ export const NoteIndicator = styled.select`
   margin-right: 0.3rem;
   border: 0.1rem groove;
   font-weight: bold;
+  outline: none;
 `
 
 export const SelectArrow = styled(CaretDown)`
@@ -109,12 +110,14 @@ export const SelectArrow = styled(CaretDown)`
 
 export const SynthTypeIndicator = styled.select`
   -webkit-appearance: none;
+  width: 10rem;
   background-color: #303233;
   color: #ffaf37;
   padding: 0.5rem 1.7rem 0.2rem 0.5rem;
   margin-right: 0.3rem;
   border: 0.1rem groove;
   font-weight: bold;
+  outline: none;
 `
 
 export const ControlPanelWrap = styled.div`
@@ -191,5 +194,24 @@ export const KeyWrap = styled.div`
   }
   &:nth-child(11) {
     left: 24.8rem;
+  }
+`
+
+export const Input = styled.input`
+  -webkit-appearance: none;
+  background: #303233;
+  border-radius: 1rem;
+  border: 0.1rem groove;
+  outline: none;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: 0.2rem groove;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #ffaf37;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #ffaf37, 0px 0px 2px yellow;
   }
 `

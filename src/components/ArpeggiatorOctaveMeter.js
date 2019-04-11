@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { LabelWrap, IndicatorNumber } from './styles'
+import { LabelWrap, IndicatorNumber, Input } from './styles'
 
 class ArpeggiatorOctaveMeter extends Component {
   state = { octave: 3 }
@@ -19,13 +19,13 @@ class ArpeggiatorOctaveMeter extends Component {
   render() {
     return (
       <div>
-        <input
+        <Input
           onChange={this.onChange}
           type="range"
           value={this.state.octave}
           name="octave"
           min="0"
-          max="7"
+          max="5"
         />
         <LabelWrap>
           Octave: <IndicatorNumber>{this.state.octave}</IndicatorNumber>

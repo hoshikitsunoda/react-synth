@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { ControlMeterWrap, LabelWrap, IndicatorNumber } from './styles'
+import { ControlMeterWrap, LabelWrap, IndicatorNumber, Input } from './styles'
 
 class OctaveChange extends Component {
   state = { octave: 3 }
@@ -16,7 +16,7 @@ class OctaveChange extends Component {
   render() {
     return (
       <ControlMeterWrap>
-        <input
+        <Input
           onChange={this.handleOctaveChange}
           type="range"
           value={this.state.octave}
