@@ -2,27 +2,9 @@ import React, { Component } from 'react'
 import ControlPanel from './ControlPanel'
 import KeyBoard from './KeyBoard'
 
-import styled from 'styled-components'
+import { SynthBody } from './styles'
 
 import Tone from 'tone'
-
-const SynthBody = styled.div`
-  flex: 1;
-  max-width: 50rem;
-  min-width: 50rem;
-  margin: 0 auto;
-  background: linear-gradient(
-    to bottom,
-    rgba(51, 107, 135, 0.3),
-    rgba(42, 49, 50, 0.01)
-  );
-  border-radius: 1rem;
-  -webkit-box-shadow: 0 14px 18px -10px #9d9c9c;
-  -moz-box-shadow: 0 14px 18px -10px #9d9c9c;
-  box-shadow: 0 14px 18px -10px #9d9c9c;
-  border: 3px groove;
-  // padding: 3rem 3rem 0;
-`
 
 class Synth extends Component {
   state = {

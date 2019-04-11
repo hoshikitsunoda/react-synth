@@ -3,21 +3,15 @@ import ArpeggiatorNoteLength from './ArpeggiatorNoteLength'
 import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 
 import styled from 'styled-components'
+import {
+  SequenceWrap,
+  NoteIndicatorOuterWrap,
+  NoteIndicatorWrap,
+  NoteIndicator,
+  SelectArrow
+} from './styles'
 
 import { notes } from '../constants/Constants'
-
-const SequenceWrap = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  padding: 1rem 0;
-  border-bottom: 0.2rem groove;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.3) 100%
-  );
-`
 
 const ButtonWrap = styled.div``
 
@@ -65,24 +59,27 @@ class Arpeggiator extends Component {
       )
     })
 
-    const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map(item => {
+    const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
       return (
-        <select
-          onChange={this.handleSequenceInput}
-          key={item}
-          name={`step-${item}`}
-          id={`step-${item}`}
-          ref={ref => (this.sequenceNotes[item] = ref)}
-        >
-          {noteList}
-        </select>
+        <NoteIndicatorWrap key={index}>
+          <NoteIndicator
+            onChange={this.handleSequenceInput}
+            key={item}
+            name={`step-${item}`}
+            id={`step-${item}`}
+            ref={ref => (this.sequenceNotes[item] = ref)}
+          >
+            {noteList}
+          </NoteIndicator>
+          <SelectArrow />
+        </NoteIndicatorWrap>
       )
     })
     return (
       <div>
         <ArpeggiatorNoteLength sendNoteLength={this.props.sendNoteLength} />
         <SequenceWrap>
-          <div className="sequence">{sequence}</div>
+          <NoteIndicatorOuterWrap>{sequence}</NoteIndicatorOuterWrap>
           <ArpeggiatorOctaveMeter
             arpeggiatorOctave={this.handleArpeggiatorOctave}
           />

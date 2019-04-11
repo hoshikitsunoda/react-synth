@@ -1,47 +1,7 @@
 import React, { Component } from 'react'
 import { keys } from '../constants/Constants'
 
-import styled from 'styled-components'
-
-const KeyboardBox = styled.div`
-  position: relative;
-  display: flex;
-  width: 70%;
-  margin: 0 auto;
-`
-
-const KeyWrap = styled.div`
-  width: calc(100% / 8);
-  height: 12rem;
-  border: 0.3rem solid #fff;
-  border-radius: 0.3rem;
-  background-color: rgba(136, 136, 136, 0.3);
-  &:nth-child(2),
-  &:nth-child(4),
-  &:nth-child(7),
-  &:nth-child(9),
-  &:nth-child(11) {
-    background: #000;
-    width: 3rem;
-    position: absolute;
-    height: 9rem;
-  }
-  &:nth-child(2) {
-    left: 2.85rem;
-  }
-  &:nth-child(4) {
-    left: 7.3rem;
-  }
-  &:nth-child(7) {
-    left: 16rem;
-  }
-  &:nth-child(9) {
-    left: 20.35rem;
-  }
-  &:nth-child(11) {
-    left: 24.8rem;
-  }
-`
+import { KeyboardBox, KeyWrap } from './styles'
 
 class KeyBoard extends Component {
   state = { note: '' }

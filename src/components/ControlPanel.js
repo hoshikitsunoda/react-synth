@@ -5,6 +5,8 @@ import SynthType from './SynthType'
 import OctaveChange from './OctaveChange'
 import BPMCounter from './BPMCounter'
 
+import { ControlPanelWrap, Controls } from './styles'
+
 const ControlPanel = props => {
   const {
     sendNoteLength,
@@ -19,21 +21,23 @@ const ControlPanel = props => {
   } = props
 
   return (
-    <div>
+    <ControlPanelWrap>
       <Arpeggiator
         sendNoteLength={sendNoteLength}
         arpeggiatorNoteChange={arpeggiatorNoteChange}
         sequencer={sequencer}
       />
-      <MonoPoly changeVoice={changeVoice} synthVoice={synthVoice} />
-      <SynthType
-        changeSynthType={changeSynthType}
-        synthVoice={synthVoice}
-        synthChange={synthChange}
-      />
-      <OctaveChange octaveChange={octaveChange} />
-      <BPMCounter bpmChange={bpmChange} />
-    </div>
+      <Controls>
+        <MonoPoly changeVoice={changeVoice} synthVoice={synthVoice} />
+        <SynthType
+          changeSynthType={changeSynthType}
+          synthVoice={synthVoice}
+          synthChange={synthChange}
+        />
+        <OctaveChange octaveChange={octaveChange} />
+        <BPMCounter bpmChange={bpmChange} />
+      </Controls>
+    </ControlPanelWrap>
   )
 }
 

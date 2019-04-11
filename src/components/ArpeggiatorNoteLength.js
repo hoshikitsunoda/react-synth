@@ -1,51 +1,13 @@
 import React, { Component } from 'react'
 
-import styled from 'styled-components'
+import {
+  LengthIndicatorBox,
+  LengthIndicators,
+  IndicatorLabel,
+  Indicator
+} from './styles'
 
 import { noteLengthValue } from '../constants/Constants'
-
-const LengthIndicatorBox = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  border-bottom: 0.2rem groove;
-  padding: 0.8rem 0;
-  background-color: rgba(0, 0, 0, 0.15);
-`
-const LengthIndicator = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4rem 0.8rem;
-  border: 0.3rem groove;
-  width: 7rem;
-  background-color: rgba(0, 0, 0, 0.6);
-`
-
-const IndicatorLabel = styled.label`
-  color: #aaa;
-  font-weight: bold;
-  transition: 0.3s;
-  margin-top: 0.3rem;
-`
-
-const Indicator = styled.input`
-  margin-right: 0.5rem;
-  -webkit-appearance: none;
-  background-color: #fafafa;
-  border: 0.2rem groove #cacece;
-  padding: 0.7rem;
-  border-radius: 0.3rem;
-  outline: none;
-
-  &:checked + ${IndicatorLabel} {
-    color: #ffaf37;
-  }
-
-  &:checked {
-    background-color: #ffaf37;
-    border: 0.2rem groove;
-  }
-`
 
 class ArpeggiatorNoteLength extends Component {
   state = { noteLength: '' }
@@ -64,7 +26,7 @@ class ArpeggiatorNoteLength extends Component {
   render() {
     const noteLengthList = noteLengthValue.map((value, index) => {
       return (
-        <LengthIndicator key={index}>
+        <LengthIndicators key={index}>
           <Indicator
             onChange={this.handleSelectChange}
             name="note-length"
@@ -76,7 +38,7 @@ class ArpeggiatorNoteLength extends Component {
             0,
             -1
           )}`}</IndicatorLabel>
-        </LengthIndicator>
+        </LengthIndicators>
       )
     })
 

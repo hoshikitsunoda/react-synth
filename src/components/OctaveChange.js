@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { ControlMeterWrap, LabelWrap, IndicatorNumber } from './styles'
+
 class OctaveChange extends Component {
   state = { octave: 3 }
 
@@ -13,8 +15,7 @@ class OctaveChange extends Component {
 
   render() {
     return (
-      <div>
-        <label htmlFor="Octave">Octave</label>
+      <ControlMeterWrap>
         <input
           onChange={this.handleOctaveChange}
           type="range"
@@ -23,8 +24,11 @@ class OctaveChange extends Component {
           min="0"
           max="7"
         />
-        <div>{this.state.octave}</div>
-      </div>
+        <LabelWrap>
+          <label htmlFor="Octave">Octave:</label>
+          <IndicatorNumber>{this.state.octave}</IndicatorNumber>
+        </LabelWrap>
+      </ControlMeterWrap>
     )
   }
 }
