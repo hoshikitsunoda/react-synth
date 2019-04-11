@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { SynthTypeIndicator, SelectArrow, NoteIndicatorWrap } from './styles'
+import { SynthTypeIndicator, SelectArrow, NoteIndicatorWrap } from '../styles'
 
 class SynthType extends Component {
   state = { type: '' }

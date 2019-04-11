@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import ControlPanel from './ControlPanel'
-import KeyBoard from './KeyBoard'
+import ControlPanel from '../Controls/ControlPanel'
+import KeyBoard from '../KeyBoards/KeyBoard'
 
-import { SynthBody } from './styles'
+import { SynthBody } from '../styles'
 
 import Tone from 'tone'
 
@@ -13,8 +13,8 @@ class Synth extends Component {
     noteLength: '8n',
     note: '',
     octave: 3,
-    BPMCount: 100,
-    steps: ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C4']
+    BPMCount: 120,
+    steps: ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3']
   }
 
   delay = new Tone.PingPongDelay('8t', 0.2)
@@ -22,7 +22,7 @@ class Synth extends Component {
   volume = new Tone.Volume(-30)
   volume2 = new Tone.Volume(-20)
 
-  synthArp = new Tone.AMSynth().chain(this.wah, this.delay, Tone.Master)
+  synthArp = new Tone.AMSynth().chain(this.wah, Tone.Master)
   synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
   synthPoly = new Tone.PolySynth().chain(this.volume2, Tone.Master)
 

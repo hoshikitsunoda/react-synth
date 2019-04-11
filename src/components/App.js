@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Synth from './Synth'
+import Synth from './Synth/Synth'
 
 import styled, { createGlobalStyle } from 'styled-components'
 

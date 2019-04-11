@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { ControlMeterWrap, LabelWrap, IndicatorNumber, Input } from './styles'
+import { ControlMeterWrap, LabelWrap, IndicatorNumber, Input } from '../styles'
 
 class OctaveChange extends Component {
   state = { octave: 3 }

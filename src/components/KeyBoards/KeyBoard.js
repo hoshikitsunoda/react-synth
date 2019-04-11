@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { keys } from '../constants/Constants'
+import { keys } from '../../constants/Constants'
 
-import { KeyboardBox, KeyWrap } from './styles'
+import { KeyboardBox, KeyWrap } from '../styles'
 
 class KeyBoard extends Component {
   state = { note: '' }

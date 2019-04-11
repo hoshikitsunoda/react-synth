@@ -5,9 +5,9 @@ import {
   LengthIndicators,
   IndicatorLabel,
   Indicator
-} from './styles'
+} from '../styles'
 
-import { noteLengthValue } from '../constants/Constants'
+import { noteLengthValue } from '../../constants/Constants'
 
 class ArpeggiatorNoteLength extends Component {
   state = { noteLength: '' }
