@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ControlPanel from './ControlPanel'
 import KeyBoard from './KeyBoard'
 
+import { SynthBody } from './styles'
+
 import Tone from 'tone'
 
 class Synth extends Component {
@@ -15,7 +17,7 @@ class Synth extends Component {
     steps: ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C4']
   }
 
-  delay = new Tone.PingPongDelay('8t', 0.4)
+  delay = new Tone.PingPongDelay('8t', 0.2)
   wah = new Tone.AutoWah()
   volume = new Tone.Volume(-30)
   volume2 = new Tone.Volume(-20)
@@ -112,18 +114,17 @@ class Synth extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener('keypress', this.handleSingleNote)
+    window.addEventListener('keypress', event => {
+      if (!event.repeat) {
+        this.handleSingleNote()
+      }
+    })
     window.addEventListener('keyup', this.handleSingleNoteRelease)
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('keypress', this.handleSingleNote)
-    window.removeEventListener('keyup', this.handleSingleNoteRelease)
   }
 
   render() {
     return (
-      <div>
+      <SynthBody>
         <ControlPanel
           sendNoteLength={this.getNoteLength}
           sequencer={this.handleSequence}
@@ -140,7 +141,7 @@ class Synth extends Component {
           sendNote={this.getNote}
           octave={this.state.octave}
         />
-      </div>
+      </SynthBody>
     )
   }
 }

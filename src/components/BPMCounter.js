@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import { ControlMeterWrap, LabelWrap, IndicatorNumber, Input } from './styles'
+
 class BPMCounter extends Component {
   state = { BPMCount: 100 }
 
@@ -13,9 +15,8 @@ class BPMCounter extends Component {
 
   render() {
     return (
-      <div>
-        <label htmlFor="BPM">BPM</label>
-        <input
+      <ControlMeterWrap>
+        <Input
           onChange={this.handleBPMChange}
           type="range"
           value={this.state.BPMCount}
@@ -23,8 +24,11 @@ class BPMCounter extends Component {
           min="60"
           max="240"
         />
-        <div>{this.state.BPMCount}</div>
-      </div>
+        <LabelWrap>
+          <label htmlFor="BPM">BPM: </label>
+          <IndicatorNumber> {this.state.BPMCount}</IndicatorNumber>
+        </LabelWrap>
+      </ControlMeterWrap>
     )
   }
 }

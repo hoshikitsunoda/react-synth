@@ -2,7 +2,18 @@ import React, { Component } from 'react'
 import ArpeggiatorNoteLength from './ArpeggiatorNoteLength'
 import ArpeggiatorOctaveMeter from './ArpeggiatorOctaveMeter'
 
+import styled from 'styled-components'
+import {
+  SequenceWrap,
+  NoteIndicatorOuterWrap,
+  NoteIndicatorWrap,
+  NoteIndicator,
+  SelectArrow
+} from './styles'
+
 import { notes } from '../constants/Constants'
+
+const ButtonWrap = styled.div``
 
 class Arpeggiator extends Component {
   state = { noteLength: '', active: false, steps: [], octave: 3 }
@@ -28,10 +39,12 @@ class Arpeggiator extends Component {
     this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
-  onClick = () => {
+  onClick = event => {
     const isActive = this.state.active
     this.setState({ active: !isActive })
-    this.props.sequencer()
+    if (!event.repeat) {
+      this.props.sequencer()
+    }
   }
 
   render() {
@@ -46,32 +59,42 @@ class Arpeggiator extends Component {
       )
     })
 
-    const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map(item => {
+    const sequence = [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
       return (
-        <select
-          onChange={this.handleSequenceInput}
-          key={item}
-          name={`step-${item}`}
-          id={`step-${item}`}
-          ref={ref => (this.sequenceNotes[item] = ref)}
-        >
-          {noteList}
-        </select>
+        <NoteIndicatorWrap key={index}>
+          <NoteIndicator
+            onChange={this.handleSequenceInput}
+            key={item}
+            name={`step-${item}`}
+            id={`step-${item}`}
+            ref={ref => (this.sequenceNotes[item] = ref)}
+          >
+            {noteList}
+          </NoteIndicator>
+          <SelectArrow />
+        </NoteIndicatorWrap>
       )
     })
     return (
       <div>
         <ArpeggiatorNoteLength sendNoteLength={this.props.sendNoteLength} />
-        <div className="sequence">{sequence}</div>
-        <ArpeggiatorOctaveMeter
-          arpeggiatorOctave={this.handleArpeggiatorOctave}
-        />
-        <button
-          onClick={this.onClick}
-          className={`ui toggle button ${this.state.active ? ' active' : ''}`}
-        >
-          Arp
-        </button>
+        <SequenceWrap>
+          <NoteIndicatorOuterWrap>{sequence}</NoteIndicatorOuterWrap>
+          <ArpeggiatorOctaveMeter
+            arpeggiatorOctave={this.handleArpeggiatorOctave}
+          />
+          <ButtonWrap>
+            <button
+              id="arp-start"
+              onClick={this.onClick}
+              className={`ui toggle button ${
+                this.state.active ? ' active' : ''
+              }`}
+            >
+              Arp
+            </button>
+          </ButtonWrap>
+        </SequenceWrap>
       </div>
     )
   }

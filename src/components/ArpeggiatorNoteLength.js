@@ -1,5 +1,12 @@
 import React, { Component } from 'react'
 
+import {
+  LengthIndicatorBox,
+  LengthIndicators,
+  IndicatorLabel,
+  Indicator
+} from './styles'
+
 import { noteLengthValue } from '../constants/Constants'
 
 class ArpeggiatorNoteLength extends Component {
@@ -19,20 +26,23 @@ class ArpeggiatorNoteLength extends Component {
   render() {
     const noteLengthList = noteLengthValue.map((value, index) => {
       return (
-        <div key={index}>
-          <input
+        <LengthIndicators key={index}>
+          <Indicator
             onChange={this.handleSelectChange}
             name="note-length"
             type="radio"
             value={value}
             defaultChecked={value === '8n' ? 'defaultChecked' : ''}
           />
-          <label htmlFor={value}>{`1/${value.slice(0, -1)}`}</label>
-        </div>
+          <IndicatorLabel htmlFor={value}>{`1/${value.slice(
+            0,
+            -1
+          )}`}</IndicatorLabel>
+        </LengthIndicators>
       )
     })
 
-    return <div>{noteLengthList}</div>
+    return <LengthIndicatorBox>{noteLengthList}</LengthIndicatorBox>
   }
 }
 
