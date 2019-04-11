@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 
-import { ControlMeterWrap, LabelWrap, IndicatorNumber, Input } from './styles'
+import { ControlMeterWrap, LabelWrap, IndicatorNumber, Input } from '../styles'
 
 class BPMCounter extends Component {
-  state = { BPMCount: 100 }
+  state = { BPMCount: 120 }
 
   handleUpdate = () => {
     this.props.bpmChange(this.state.BPMCount)

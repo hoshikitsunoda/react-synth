@@ -9,9 +9,9 @@ import {
   NoteIndicatorWrap,
   NoteIndicator,
   SelectArrow
-} from './styles'
+} from '../styles'
 
-import { notes } from '../constants/Constants'
+import { notes } from '../../constants/Constants'
 
 const ButtonWrap = styled.div``
 

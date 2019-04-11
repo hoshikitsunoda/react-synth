@@ -1,11 +1,11 @@
 import React from 'react'
-import Arpeggiator from './Arpeggiator'
+import Arpeggiator from '../Arpeggiator/Arpeggiator'
 import MonoPoly from './MonoPoly'
 import SynthType from './SynthType'
 import OctaveChange from './OctaveChange'
 import BPMCounter from './BPMCounter'
 
-import { ControlPanelWrap, Controls } from './styles'
+import { ControlPanelWrap, Controls } from '../styles'
 
 const ControlPanel = props => {
   const {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { LabelWrap, IndicatorNumber, Input } from './styles'
+import { LabelWrap, IndicatorNumber, Input } from '../styles'
 
 class ArpeggiatorOctaveMeter extends Component {
   state = { octave: 3 }
