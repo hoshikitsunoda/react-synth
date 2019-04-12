@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Synth from './Synth/Synth'
+import InstructionOverlay from './Overlay/InstructionOverlay'
 
 import styled, { createGlobalStyle } from 'styled-components'
 
@@ -29,10 +30,18 @@ const Background = styled.div`
 `
 
 class App extends Component {
+  state = { active: false }
+
+  onClick = () => {
+    this.setState({ active: true })
+  }
+
   render() {
     return (
       <Background>
         <GlobalStyles />
+        <button onClick={this.onClick} />
+        <InstructionOverlay isActive={this.state.active} />
         <Synth />
       </Background>
     )
