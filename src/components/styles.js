@@ -17,6 +17,7 @@ export const SynthBody = styled.div`
   box-shadow: 0 14px 18px -10px #9d9c9c;
   border: 3px groove;
   overflow: hidden;
+  filter: ${props => (props.isActive ? 'blur(3px)' : 'none')};
 `
 
 export const SequenceWrap = styled.div`
