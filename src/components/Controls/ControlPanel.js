@@ -10,7 +10,8 @@ import { ControlPanelWrap, Controls } from '../styles'
 const ControlPanel = props => {
   const {
     sendNoteLength,
-    sequencer,
+    sequencerStart,
+    sequencerStop,
     changeVoice,
     synthVoice,
     changeSynthType,
@@ -25,7 +26,8 @@ const ControlPanel = props => {
       <Arpeggiator
         sendNoteLength={sendNoteLength}
         arpeggiatorNoteChange={arpeggiatorNoteChange}
-        sequencer={sequencer}
+        sequencerStart={sequencerStart}
+        sequencerStop={sequencerStop}
       />
       <Controls>
         <MonoPoly changeVoice={changeVoice} synthVoice={synthVoice} />

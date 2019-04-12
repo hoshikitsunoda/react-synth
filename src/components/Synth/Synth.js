@@ -17,17 +17,26 @@ class Synth extends Component {
     steps: ['C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3', 'C3']
   }
 
-  delay = new Tone.PingPongDelay('8t', 0.2)
+  delay = new Tone.PingPongDelay('8t', 0.4)
   wah = new Tone.AutoWah()
   volume = new Tone.Volume(-30)
   volume2 = new Tone.Volume(-20)
 
-  synthArp = new Tone.AMSynth().chain(this.wah, Tone.Master)
+  synthArp = new Tone.FMSynth().chain(this.wah, Tone.Master)
   synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
   synthPoly = new Tone.PolySynth().chain(this.volume2, Tone.Master)
 
+  notes = this.state.steps
+  sequence = new Tone.Pattern(
+    (time, note) => {
+      this.synthArp.triggerAttackRelease(note, this.state.noteLength, time)
+    },
+    this.notes
+    // this.state.noteLength
+  )
+
   getNoteLength = length => {
-    this.setState({ noteLength: length })
+    this.setState({ noteLength: length }, this.handleGenerateSequence)
   }
 
   getNote = note => {
@@ -51,7 +60,7 @@ class Synth extends Component {
   }
 
   handleArpeggiatorNotes = steps => {
-    this.setState({ steps: steps })
+    this.setState({ steps: steps }, this.handleGenerateSequence)
   }
 
   handleSynthChange = () => {
@@ -97,20 +106,27 @@ class Synth extends Component {
         })
   }
 
-  handleSequence = () => {
-    const notes = this.state.steps
-    const sequence = new Tone.Sequence(
-      (time, note) => {
-        this.synthArp.triggerAttackRelease(note, '100hz', time)
-      },
-      notes,
-      this.state.noteLength
-    )
-
-    sequence.start()
+  handleSequenceStart = () => {
+    this.sequence.start()
     Tone.Transport.toggle()
 
-    Tone.Transport.bpm.value = this.state.BPMCount
+    Tone.Transport.bpm.value = this.state.BPMCount * 2
+  }
+
+  handleSequenceStop = () => {
+    this.sequence.stop()
+    Tone.Transport.toggle()
+  }
+
+  handleGenerateSequence = () => {
+    this.notes = this.state.steps
+    this.sequence = new Tone.Pattern(
+      (time, note) => {
+        this.synthArp.triggerAttackRelease(note, this.state.noteLength, time)
+      },
+      this.notes
+      // this.state.noteLength
+    )
   }
 
   componentDidMount() {
@@ -124,10 +140,11 @@ class Synth extends Component {
 
   render() {
     return (
-      <SynthBody>
+      <SynthBody isActive={this.props.isActive}>
         <ControlPanel
           sendNoteLength={this.getNoteLength}
-          sequencer={this.handleSequence}
+          sequencerStart={this.handleSequenceStart}
+          sequencerStop={this.handleSequenceStop}
           changeVoice={this.handleVoiceChange}
           changeSynthType={this.handleTypeChange}
           synthVoice={this.state.voice}

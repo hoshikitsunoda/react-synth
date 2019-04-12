@@ -52,7 +52,7 @@ class App extends Component {
         <GlobalStyles />
         <InstructionButton onClick={this.onClick} />
         <InstructionOverlay isActive={this.state.active} />
-        <Synth />
+        <Synth isActive={this.state.active} />
       </Background>
     )
   }
