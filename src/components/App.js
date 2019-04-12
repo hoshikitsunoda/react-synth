@@ -4,6 +4,7 @@ import InstructionOverlay from './Overlay/InstructionOverlay'
 
 import styled, { createGlobalStyle } from 'styled-components'
 import { Info } from 'styled-icons/material/Info'
+import { Close } from 'styled-icons/material/Close'
 
 const GlobalStyles = createGlobalStyle`
   body,
@@ -39,6 +40,15 @@ const InstructionButton = styled(Info)`
   color: #ffaf37;
 `
 
+const CloseButton = styled(Close)`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  z-index: 11;
+  color: #fff;
+`
+
 class App extends Component {
   state = { active: false }
 
@@ -50,7 +60,13 @@ class App extends Component {
     return (
       <Background>
         <GlobalStyles />
-        <InstructionButton onClick={this.onClick} />
+        <div>
+          {this.state.active ? (
+            <CloseButton onClick={this.onClick} />
+          ) : (
+            <InstructionButton onClick={this.onClick} />
+          )}
+        </div>
         <InstructionOverlay isActive={this.state.active} />
         <Synth isActive={this.state.active} />
       </Background>
