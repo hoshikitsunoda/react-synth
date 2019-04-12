@@ -32,7 +32,7 @@ class ArpeggiatorNoteLength extends Component {
             name="note-length"
             type="radio"
             value={value}
-            defaultChecked={value === '8n' ? 'defaultChecked' : ''}
+            defaultChecked={value === '16n' ? 'defaultChecked' : ''}
           />
           <IndicatorLabel htmlFor={value}>{`1/${value.slice(
             0,

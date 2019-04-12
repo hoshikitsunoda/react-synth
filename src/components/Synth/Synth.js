@@ -10,7 +10,7 @@ class Synth extends Component {
   state = {
     type: 'Mono',
     voice: 'mono',
-    noteLength: '8n',
+    noteLength: '16n',
     note: '',
     octave: 3,
     BPMCount: 120,
