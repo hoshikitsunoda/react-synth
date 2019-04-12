@@ -14,7 +14,7 @@ const Overlay = styled.div`
   transition: 0.3s;
   opacity: ${props => (props.isActive ? 1 : 0)};
   visibility: ${props => (props.isActive ? 'visible' : 'hidden')};
-  transition: opacity 1s, visibility 1s;
+  transition: opacity 0.3s, visibility 0.3s;
 `
 
 const InstructionBox = styled.div`
@@ -31,7 +31,7 @@ const InstructionBox = styled.div`
     rgba(42, 49, 50, 0.3)
   );
   border-radius: 1rem;
-  transition: opacity 1s, visibility 1s;
+  transition: opacity 0.3s, visibility 0.3s;
 `
 
 const TextBoxWrap = styled.div`
@@ -43,16 +43,6 @@ const NoteLengthTextBox = styled.div`
   letter-spacing: 0.2rem;
   border: 3px solid #ffaf37;
   border-bottom: none;
-  transition: 0.3s;
-  & p {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
-  &:hover p {
-    opacity: 0.8;
-    visibility: visible;
-  }
 `
 
 const ArpInstructionBox = styled.div`
@@ -63,16 +53,6 @@ const ArpNotesWrap = styled.div`
   width: 80%;
   padding: 0.5rem;
   border: 3px solid #ffaf37;
-  transition: 0.3s;
-  & p {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
-  &:hover p {
-    opacity: 0.8;
-    visibility: visible;
-  }
 `
 
 const ArpOctaveWrap = styled.div`
@@ -80,17 +60,8 @@ const ArpOctaveWrap = styled.div`
   padding: 0.5rem;
   border: 3px solid #ffaf37;
   border-left: none;
-  text-align: center;
-  transition: 0.3s;
-  & p {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
-  &:hover p {
-    opacity: 0.8;
-    visibility: visible;
-  }
+  display: flex;
+  align-items: center;
 `
 
 const ArpButtonWrap = styled.div`
@@ -98,17 +69,8 @@ const ArpButtonWrap = styled.div`
   padding: 0.5rem;
   border: 3px solid #ffaf37;
   border-left: none;
-  text-align: center;
-  transition: 0.3s;
-  & p {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
-  &:hover p {
-    opacity: 0.8;
-    visibility: visible;
-  }
+  display: flex;
+  align-items: center;
 `
 
 const KeyboardSettingWrap = styled.div`
@@ -118,23 +80,14 @@ const KeyboardSettingWrap = styled.div`
 
 const KeyboardSetting = styled.div`
   width: 25%;
-  text-align: center;
+  display: flex;
+  align-items: center;
   padding: 0.5rem;
   border: 3px solid #ffaf37;
   border-top: none;
   border-left: none;
   &:first-child {
     border-left: 3px solid #ffaf37;
-  }
-  transition: 0.3s;
-  & p {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s, visibility 0.5s;
-  }
-  &:hover p {
-    opacity: 0.8;
-    visibility: visible;
   }
 `
 
