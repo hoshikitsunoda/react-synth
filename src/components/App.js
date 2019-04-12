@@ -60,7 +60,13 @@ class App extends Component {
     return (
       <Background>
         <GlobalStyles />
-        <InstructionButton onClick={this.onClick} />
+        <div>
+          {this.state.active ? (
+            <CloseButton onClick={this.onClick} />
+          ) : (
+            <InstructionButton onClick={this.onClick} />
+          )}
+        </div>
         <InstructionOverlay isActive={this.state.active} />
         <Synth isActive={this.state.active} />
       </Background>
