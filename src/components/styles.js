@@ -17,6 +17,7 @@ export const SynthBody = styled.div`
   box-shadow: 0 14px 18px -10px #9d9c9c;
   border: 3px groove;
   overflow: hidden;
+  filter: ${props => (props.isActive ? 'blur(3px)' : 'none')};
 `
 
 export const SequenceWrap = styled.div`
@@ -213,5 +214,96 @@ export const Input = styled.input`
     background: #ffaf37;
     cursor: pointer;
     box-shadow: 1px 1px 1px #ffaf37, 0px 0px 2px yellow;
+  }
+`
+
+// Overlay style
+
+export const Overlay = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  transition: 0.3s;
+  opacity: ${props => (props.isActive ? 1 : 0)};
+  visibility: ${props => (props.isActive ? 'visible' : 'hidden')};
+  transition: opacity 0.3s, visibility 0.3s;
+`
+
+export const InstructionBox = styled.div`
+  opacity: ${props => (props.isActive ? 1 : 0)};
+  visibility: ${props => (props.isActive ? 'visible' : 'hidden')};
+  max-width: 50rem;
+  min-width: 50rem;
+  height: 100%;
+  max-height: 29rem;
+  margin: 0 auto;
+  background: linear-gradient(
+    to bottom,
+    rgba(42, 49, 50, 0.7),
+    rgba(42, 49, 50, 0.3)
+  );
+  border-radius: 1rem;
+  transition: opacity 0.3s, visibility 0.3s;
+`
+
+export const TextBoxWrap = styled.div`
+  color: #fff;
+  letter-spacing: 0.2rem;
+`
+export const NoteLengthTextBox = styled.div`
+  padding: 0.5rem;
+  letter-spacing: 0.2rem;
+  border: 3px solid #ffaf37;
+  border-bottom: none;
+`
+
+export const ArpInstructionBox = styled.div`
+  display: flex;
+`
+
+export const ArpNotesWrap = styled.div`
+  width: 80%;
+  padding: 0.5rem;
+  border: 3px solid #ffaf37;
+`
+
+export const ArpOctaveWrap = styled.div`
+  width: 22%;
+  padding: 0.5rem;
+  border: 3px solid #ffaf37;
+  border-left: none;
+  display: flex;
+  align-items: center;
+`
+
+export const ArpButtonWrap = styled.div`
+  width: 15%;
+  padding: 0.5rem;
+  border: 3px solid #ffaf37;
+  border-left: none;
+  display: flex;
+  align-items: center;
+`
+
+export const KeyboardSettingWrap = styled.div`
+  display: flex;
+  height: 5rem;
+`
+
+export const KeyboardSetting = styled.div`
+  width: 25%;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border: 3px solid #ffaf37;
+  border-top: none;
+  border-left: none;
+  &:first-child {
+    border-left: 3px solid #ffaf37;
   }
 `

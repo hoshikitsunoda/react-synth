@@ -39,11 +39,14 @@ class Arpeggiator extends Component {
     this.setState({ octave: octave }, this.handleSequenceInput)
   }
 
-  onClick = event => {
+  onClick = () => {
     const isActive = this.state.active
+    const isPlaying = false
     this.setState({ active: !isActive })
-    if (!event.repeat) {
-      this.props.sequencer()
+    if (!isPlaying) {
+      this.props.sequencerStart()
+    } else {
+      this.props.sequencerStop()
     }
   }
 
