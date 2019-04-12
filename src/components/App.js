@@ -4,6 +4,7 @@ import InstructionOverlay from './Overlay/InstructionOverlay'
 
 import styled, { createGlobalStyle } from 'styled-components'
 import { Info } from 'styled-icons/material/Info'
+import { Close } from 'styled-icons/material/Close'
 
 const GlobalStyles = createGlobalStyle`
   body,
@@ -37,6 +38,15 @@ const InstructionButton = styled(Info)`
   width: 3rem;
   z-index: 11;
   color: #ffaf37;
+`
+
+const CloseButton = styled(Close)`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  width: 3rem;
+  z-index: 11;
+  color: #fff;
 `
 
 class App extends Component {
