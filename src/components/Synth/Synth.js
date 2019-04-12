@@ -20,7 +20,7 @@ class Synth extends Component {
   delay = new Tone.PingPongDelay('8t', 0.4)
   wah = new Tone.AutoWah()
   volume = new Tone.Volume(-30)
-  volume2 = new Tone.Volume(-20)
+  volume2 = new Tone.Volume(-22)
 
   synthArp = new Tone.FMSynth().chain(this.wah, Tone.Master)
   synthMono = new Tone.MonoSynth().chain(this.volume, Tone.Master)
@@ -107,7 +107,7 @@ class Synth extends Component {
   }
 
   handleSequenceStart = () => {
-    this.sequence.start()
+    this.sequence.start(0)
     Tone.Transport.toggle()
 
     Tone.Transport.bpm.value = this.state.BPMCount * 2
