@@ -16,7 +16,7 @@ export const keys = [
   'k'
 ]
 
-export const noteLengthValue = ['2n', '4n', '8n', '16n', '32n']
+export const noteLengthValue = ['8n', '16n', '32n']
 
 export const notes = [
   'C',
