@@ -10,7 +10,11 @@ import {
   ArpOctaveWrap,
   ArpButtonWrap,
   KeyboardSettingWrap,
-  KeyboardSetting
+  KeyboardSetting,
+  KeyboardTextWrap,
+  KeyboardInstructionText,
+  KeyboardMappingWrap,
+  Key
 } from '../styles'
 
 const InstructionOverlay = props => {
@@ -51,6 +55,26 @@ const InstructionOverlay = props => {
               <p>BPM</p>
             </KeyboardSetting>
           </KeyboardSettingWrap>
+          <KeyboardTextWrap>
+            <KeyboardInstructionText>
+              These keyboards correspond to your computer keyboards as follow:
+            </KeyboardInstructionText>
+            <KeyboardMappingWrap>
+              <Key>a</Key>
+              <Key>w</Key>
+              <Key>s</Key>
+              <Key>e</Key>
+              <Key>d</Key>
+              <Key>f</Key>
+              <Key>t</Key>
+              <Key>g</Key>
+              <Key>y</Key>
+              <Key>h</Key>
+              <Key>u</Key>
+              <Key>j</Key>
+              <Key>k</Key>
+            </KeyboardMappingWrap>
+          </KeyboardTextWrap>
         </TextBoxWrap>
       </InstructionBox>
     </Overlay>

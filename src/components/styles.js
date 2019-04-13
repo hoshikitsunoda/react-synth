@@ -307,3 +307,92 @@ export const KeyboardSetting = styled.div`
     border-left: 3px solid #ffaf37;
   }
 `
+
+export const KeyboardTextWrap = styled.div`
+  padding-top: 0.5rem;
+  padding-bottom: 1.4rem;
+  border: 3px solid #ffaf37;
+  border-top: none;
+`
+
+export const KeyboardInstructionText = styled.p`
+  text-align: center;
+  letter-spacing: 0.2rem;
+`
+
+export const KeyboardMappingWrap = styled.div`
+  display: flex;
+  width: 70%;
+  height: 7rem;
+  margin: 0 auto;
+  position: relative;
+`
+
+export const Key = styled.div`
+  position: absolute;
+
+  &:first-child {
+    bottom: 0;
+    left: 2.3rem;
+  }
+
+  &:nth-child(2) {
+    left: 4.34rem;
+    bottom: 3rem;
+  }
+
+  &:nth-child(3) {
+    left: 6.6rem;
+    bottom: 0;
+  }
+
+  &:nth-child(4) {
+    left: 9rem;
+    bottom: 3rem;
+  }
+
+  &:nth-child(5) {
+    left: 10.8rem;
+    bottom: 0;
+  }
+
+  &:nth-child(6) {
+    left: 15.1rem;
+    bottom: 0;
+  }
+
+  &:nth-child(7) {
+    left: 17.8rem;
+    bottom: 3rem;
+  }
+
+  &:nth-child(8) {
+    left: 19.1rem;
+    bottom: 0;
+  }
+
+  &:nth-child(9) {
+    right: 12.2rem;
+    bottom: 3rem;
+  }
+
+  &:nth-child(10) {
+    right: 10.7rem;
+    bottom: 0;
+  }
+
+  &:nth-child(11) {
+    right: 7.7rem;
+    bottom: 3rem;
+  }
+
+  &:nth-child(12) {
+    right: 6.5rem;
+    bottom: 0;
+  }
+
+  &:last-child {
+    right: 2rem;
+    bottom: 0;
+  }
+`
