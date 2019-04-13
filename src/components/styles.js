@@ -182,19 +182,19 @@ export const KeyWrap = styled.div`
     height: 9rem;
   }
   &:nth-child(2) {
-    left: 2.85rem;
+    left: 2.8rem;
   }
   &:nth-child(4) {
-    left: 7.3rem;
+    left: 7rem;
   }
   &:nth-child(7) {
-    left: 16rem;
+    left: 15.45rem;
   }
   &:nth-child(9) {
-    left: 20.35rem;
+    left: 19.75rem;
   }
   &:nth-child(11) {
-    left: 24.8rem;
+    left: 24rem;
   }
 `
 
